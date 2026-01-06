@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aero AI - Intelligence Redefined</title>
+    <meta name="description" content="Next-generation AI Chatbot with real-time search.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Markdown & Code Highlighting (ChatGPT-style) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation (ChatGPT-Style) -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fa-solid fa-infinity"></i>
+                    <span>Aero</span>
+                </div>
+                <button id="closeSidebar" class="icon-btn mobile-only"><i class="fas fa-times"></i></button>
+            </div>
+
+            <!-- New Chat Button (ChatGPT-style) -->
+            <div class="new-chat-section">
+                <button class="new-chat-btn" id="newChatBtn">
+                    <i class="fas fa-plus"></i>
+                    <span>New chat</span>
+                </button>
+            </div>
+
+            <!-- Chat History (ChatGPT-style) -->
+            <nav class="chat-history" id="chatHistory">
+                <div class="history-label">Today</div>
+                <!-- Chat history items will be dynamically added here -->
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="install-btn" id="installBtn" style="display: none;">
+                    <i class="fas fa-download"></i> Install App
+                </button>
+                <div class="user-profile">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <div class="user-info">
+                        <span class="name">Guest User</span>
+                        <span class="status">Online</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <button id="menuBtn" class="icon-btn mobile-only"><i class="fas fa-bars"></i></button>
+                <div class="current-view-title" id="viewTitle">New Chat</div>
+                <div class="header-actions">
+                    <!-- PWA Install Button (shows automatically when installable) -->
+                    <button class="install-btn-header" id="installBtnHeader" style="display: none;">
+                        <i class="fas fa-download"></i> <span>Install</span>
+                    </button>
+                    <button class="icon-btn" id="clearChat" title="Clear Chat"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </header>
+
+            <!-- Chat View -->
+            <section id="chatView" class="view-section active">
+                <div class="chat-container" id="chatbox">
+                    <div class="welcome-screen">
+                        <div class="brand-large">
+                            <i class="fa-solid fa-infinity fa-spin-pulse" style="--fa-animation-duration: 3s;"></i>
+                        </div>
+                        <h2>How can I help you today?</h2>
+                        <p class="subtitle">Ask me anything - I'll search the web automatically when needed</p>
+                        <div class="command-hint">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Tip: Type <code>/image</code> followed by a description to generate images!</span>
+                        </div>
+                        <div class="suggestions">
+                            <button class="suggestion-chip"
+                                onclick="setInput('What are the latest developments in AI?')">
+                                <i class="fas fa-sparkles"></i> Latest AI News
+                            </button>
+                            <button class="suggestion-chip"
+                                onclick="setInput('/image A futuristic cyberpunk city at night')">
+                                <i class="fas fa-image"></i> Generate Art
+                            </button>
+                            <button class="suggestion-chip" onclick="setInput('Explain quantum computing')">
+                                <i class="fas fa-brain"></i> Learn Something
+                            </button>
+                            <button class="suggestion-chip" onclick="setInput('What is the price of Bitcoin today?')">
+                                <i class="fas fa-chart-line"></i> Real-time Data
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Messages will be injected here -->
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area-wrapper">
+                    <form id="chatForm" class="input-container">
+                        <div class="input-actions-left">
+                            <button type="button" class="action-btn" id="attachBtn"><i
+                                    class="fas fa-paperclip"></i></button>
+                        </div>
+                        <input type="text" id="chatInput" placeholder="Ask anything..." autocomplete="off">
+                        <div class="input-actions-right">
+                            <button type="submit" class="send-btn" id="sendButton">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="typing-indicator hidden" id="typingIndicator">
+                        <span>Aero is thinking...</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Overlay for mobile sidebar -->
+        <div class="overlay" id="overlay"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
